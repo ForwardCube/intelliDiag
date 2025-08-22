@@ -125,13 +125,13 @@ const HomepageSubheading = styled.h2`
 
   /* Desktops, large screens (1023px - 1200px) */
   @media (min-width: 1023px) and (max-width: 1200px) {
-    font-size: 28px;
+    font-size: 22px;
     margin-bottom: 25px;
   }
 
   /* Extra large screens, TV (1201px and more) */
   @media (min-width: 1201px) {
-    font-size: 23px;
+    font-size: 22px;
   }
 `;
 

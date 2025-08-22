@@ -1,6 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+import React from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const ActionsContainer = styled.div`
   display: flex;
@@ -19,7 +20,7 @@ const ActionsContainer = styled.div`
   }
 `;
 
-const ActionButton = styled.div`
+const ActionButton = styled.button`
   background-color: #0694fb;
   border-radius: 0.625rem;
   padding: 0.75rem;
@@ -27,6 +28,7 @@ const ActionButton = styled.div`
   transition: all 0.2s ease;
   min-width: 8rem;
   text-align: center;
+  border: none;
 
   &:hover {
     background-color: #0578d1;
@@ -69,16 +71,18 @@ const StatValue = styled.h1`
   color: rgb(255, 255, 255);
 `;
 
-const Actions = ({ 
+
+const Actions = ({
   buttonText = "Create New Case",
   stats = [
     { label: "Today's Inference", value: 56 },
-    { label: "Average Inference Time", value: "56s" }
-  ]
+    { label: "Average Inference Time", value: "56s" },
+  ],
 }) => {
+  const navigate = useNavigate();
   return (
     <ActionsContainer>
-      <ActionButton>
+      <ActionButton onClick={() => navigate("/new-case")}>
         <ButtonText>{buttonText}</ButtonText>
       </ActionButton>
 
@@ -99,9 +103,9 @@ Actions.propTypes = {
   stats: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string,
-      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     })
-  )
+  ),
 };
 
 export default Actions;

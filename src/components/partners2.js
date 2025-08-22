@@ -40,6 +40,7 @@ const PartnersContainer = styled.div`
 
   /* Extra large screens, TV (1201px and more) */
   @media (min-width: 1201px) {
+    margin-bottom: 150px;
   }
 `;
 
@@ -81,8 +82,8 @@ const PartnersHeading = styled.h1`
 
   /* Extra large screens, TV (1201px and more) */
   @media (min-width: 1201px) {
-    font-size: 60px;
-    margin-bottom: 40px;
+    font-size: 62px;
+    margin-bottom: 10px;
   }
 `;
 
@@ -205,7 +206,9 @@ const Subheading = styled.h2`
 
   /* Extra large screens, TV (1201px and more) */
   @media (min-width: 1201px) {
-    font-size: 23px;
+    font-size: 22px;
+    width: 50%;
+    margin-bottom: 20px;
   }
 `;
 
@@ -235,6 +238,7 @@ const PartnerOverlay = styled.div`
     display: none;
   }
 `;
+const isDesktop = window.innerWidth >= 768;
 
 function Partners2() {
   return (
@@ -257,7 +261,10 @@ function Partners2() {
           hidden: { opacity: 0 },
           visible: {
             opacity: 1,
-            transition: { staggerChildren: 0.1, delayChildren: 0.3 },
+            transition: {
+              staggerChildren: isDesktop ? 0.1 : 0,
+              delayChildren: isDesktop ? 0.3 : 0,
+            },
           },
         }}
       >
@@ -265,15 +272,15 @@ function Partners2() {
           <PartnerCard
             key={index}
             whileHover={{
-              scale: 1.05,
+              scale: isDesktop ? 1.05 : 1.015,
               border: "2px solid rgba(0, 149, 255, 0.4)",
               zIndex: 10,
             }}
-            whileTap={{ scale: 0.98 }}
+            whileTap={{ scale: isDesktop ? 0.98 : null }}
             transition={{
-              type: "spring",
-              stiffness: 300,
-              damping: 15,
+              type: isDesktop ? "spring" : "",
+              stiffness: isDesktop ? 300 : 0,
+              damping: isDesktop ? 15 : 0,
             }}
           >
             <PartnerLogo

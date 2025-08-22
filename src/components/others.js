@@ -5,7 +5,6 @@ import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import styled from "styled-components";
 
-// Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 // Styled components
@@ -22,10 +21,11 @@ const Container = styled.div`
   padding: 40px 0;
   box-sizing: border-box;
   margin-bottom: 60px;
-  // background-color: red;
+  // background-color: green;
 
   /* Mobile devices (320px - 480px) */
   @media (min-width: 320px) and (max-width: 480px) {
+    margin-top: 0px;
   }
 
   /* iPads, Tablets (481px - 768px) */
@@ -56,6 +56,7 @@ const Heading = styled.div`
   /* Mobile devices (320px - 480px) */
   @media (min-width: 320px) and (max-width: 480px) {
     font-size: 28px;
+    margin-top: 100px;
     max-width: 85%;
   }
 
@@ -77,6 +78,7 @@ const Heading = styled.div`
 
   /* Extra large screens, TV (1201px and more) */
   @media (min-width: 1201px) {
+    font-size: 62px;
   }
 `;
 
@@ -92,6 +94,10 @@ const SwipeContainer = styled.div`
   display: flex;
   align-items: center;
 
+  /* Mobile devices (320px - 480px) */
+  @media (min-width: 320px) and (max-width: 480px) {
+    // height: 300px;
+  }
 `;
 
 const SwipeContent = styled.div`
@@ -102,7 +108,6 @@ const SwipeContent = styled.div`
   gap: 100px;
   left: 10px;
 
-
   @media (max-width: 1200px) {
     gap: 80px;
   }
@@ -111,13 +116,13 @@ const SwipeContent = styled.div`
     gap: 40px;
   }
 
-    /* Mobile devices (320px - 480px) */
+  /* Mobile devices (320px - 480px) */
   @media (min-width: 320px) and (max-width: 480px) {
   }
 
   /* iPads, Tablets (481px - 768px) */
   @media (min-width: 481px) and (max-width: 768px) {
-     align-items: center;
+    align-items: center;
   }
 
   /* Small screens, laptops (769px - 1024px) */
@@ -140,6 +145,7 @@ const SwipeItem = styled.div`
   flex-direction: column;
   align-items: center;
   will-change: transform, opacity;
+  // background-color: red;
 
   @media (max-width: 1200px) {
     width: 600px;
@@ -169,7 +175,7 @@ const ItemTitle = styled.div`
 
   /* Small screens, laptops (769px - 1024px) */
   @media (min-width: 769px) and (max-width: 1024px) {
-   font-size: 95px;
+    font-size: 95px;
   }
 
   /* Desktops, large screens (1025px - 1200px) */
@@ -213,7 +219,7 @@ const Subheading = styled.h2`
 
   /* Extra large screens, TV (1201px and more) */
   @media (min-width: 1201px) {
-    font-size: 23px;
+    font-size: 22px;
   }
 `;
 
@@ -238,9 +244,7 @@ const Description = styled.div`
   width: 100%;
   opacity: 1;
 
-  
-
-    /* Mobile devices (320px - 480px) */
+  /* Mobile devices (320px - 480px) */
   @media (min-width: 320px) and (max-width: 480px) {
     font-size: 16px;
   }
@@ -253,7 +257,7 @@ const Description = styled.div`
 
   /* Small screens, laptops (769px - 1024px) */
   @media (min-width: 769px) and (max-width: 1024px) {
-   font-size: 23px;
+    font-size: 23px;
   }
 
   /* Desktops, large screens (1025px - 1200px) */
@@ -301,12 +305,27 @@ function Others() {
     ScrollTrigger.getAll().forEach((t) => t.kill());
     gsap.set(swipeThroughRef.current, { x: centerOffset });
 
+    if (ScrollTrigger.isTouch === 1) {
+      // Enable normalizeScroll only on touch devices
+      ScrollTrigger.normalizeScroll(true);
+
+      //    ScrollTrigger.config({
+      //   // limitCallbacks: true,
+      //   ignoreMobileResize: true,
+      // });
+    }
+
+    ScrollTrigger.config({
+      // limitCallbacks: true,
+      ignoreMobileResize: true,
+    });
+
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
         pin: true,
-        markers: true,
-        scrub: 1,
+        // markers: true,
+        scrub: 0.5,
         start: "bottom bottom",
         snap: {
           snapTo: (value) => {
@@ -315,7 +334,7 @@ function Others() {
             );
             return snapPoint / (componentsRef.current.length - 1);
           },
-          duration: { min: 0.3, max: 0.8 },
+          duration: { min: 0.2, max: 0.5 },
           ease: "power3.out",
         },
         end: () => `+=1500`,
@@ -389,21 +408,32 @@ function Others() {
 
       <SwipeContainer>
         <SwipeContent ref={swipeThroughRef}>
-          {["Faster", "Easier", "Accessible"].map((word, i) => (
+          {[
+            {
+              title: "Faster",
+              description:
+                "By harnessing the power of AI and intelligent imaging, we're redefining what's possible in medical diagnostics. Our technology accelerates the diagnostic process while improving accuracy, empowering healthcare professionals to make timely, confident decisions that can lead to better outcomes for patients when every second counts.",
+            },
+            {
+              title: "Easier",
+              description:
+                "With an intuitive interface and intelligent automation, we simplify the diagnostic workflow from end to end. Our system handles complex image analysis seamlessly, reducing the cognitive burden on healthcare professionals and allowing them to focus on what matters most by delivering quality care with greater efficiency and confidence",
+            },
+            {
+              title: "Accessible",
+              description:
+                "Breaking down barriers to quality healthcare, our platform works seamlessly across devices and locations. Whether in urban hospitals or remote clinics, healthcare providers can access advanced diagnostic capabilities, ensuring consistent care quality everywhere.",
+            },
+          ].map((item, i) => (
             <SwipeItem
               key={i}
               ref={(el) => addToRefs(el, componentsRef)}
               style={{ width: `${dimensions.componentWidth}px` }}
             >
-              <ItemTitle>{word}</ItemTitle>
+              <ItemTitle>{item.title}</ItemTitle>
               <Divider />
               <Description ref={(el) => addToRefs(el, descsRef)}>
-                By harnessing the power of AI and intelligent imaging, we're
-                redefining what's possible in medical diagnostics. Our
-                technology accelerates the diagnostic process while improving
-                accuracy, empowering healthcare professionals to make timely,
-                confident decisions that can lead to better outcomes for
-                patients when every second counts.
+                {item.description}
               </Description>
             </SwipeItem>
           ))}

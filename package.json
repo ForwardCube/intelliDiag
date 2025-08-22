@@ -10,13 +10,18 @@
     "@testing-library/user-event": "^13.5.0",
     "framer-motion": "^12.18.1",
     "gsap": "^3.13.0",
+    "konva": "^9.3.22",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-icons": "^5.5.0",
+    "react-konva": "^19.0.7",
+    "react-polygon-drawer": "^0.1.4",
     "react-router-dom": "^7.6.2",
     "react-scripts": "5.0.1",
     "react-scroll": "^1.9.3",
+    "react-sketch-canvas": "^6.2.0",
     "styled-components": "^6.1.19",
+    "uuid": "^11.1.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

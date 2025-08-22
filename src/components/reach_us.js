@@ -27,7 +27,7 @@ const ReachContainer = styled.div`
     min-height: 50vh;
   }
 
-   /* Small screens, laptops (769px - 1024px) */
+  /* Small screens, laptops (769px - 1024px) */
   @media (min-width: 769px) and (max-width: 1024px) {
     min-height: 60vh;
   }
@@ -38,6 +38,7 @@ const ReachContainer = styled.div`
 
   /* Extra large screens, TV (1201px and more) */
   @media (min-width: 1201px) {
+    margn-bottom: 60px;
   }
 `;
 
@@ -59,8 +60,6 @@ const Logo = styled.img`
     height: 25px;
     width: auto;
   }
-
-  
 `;
 
 const MainHeading = styled.h1`
@@ -95,6 +94,7 @@ const MainHeading = styled.h1`
 
   /* Extra large screens, TV (1201px and more) */
   @media (min-width: 1201px) {
+    font-size: 62px;
   }
 
   br {
@@ -111,7 +111,7 @@ const Highlight = styled.span`
 
 const ActionButton = styled(motion.button)`
   height: 48px;
-  width: 160px;
+  // width: 160px;
   background-color: #0694fb;
   border-radius: 13px;
   display: flex;
@@ -126,30 +126,39 @@ const ActionButton = styled(motion.button)`
   /* iPads, Tablets (481px - 768px) */
   @media (min-width: 481px) and (max-width: 768px) {
     height: 56px;
-    width: 175px;
+    // width: 175px;
     font-size: 20px;
+    margin-bottom: 10px;
   }
 
   /* Mobile devices (320px - 480px) */
   @media (min-width: 320px) and (max-width: 480px) {
     height: 40px;
-    width: 115px;
+    padding: 0px 20px;
     font-size: 13px;
     border-radius: 9px;
+    margin-bottom: 10px;
   }
 
   /* Small screens, laptops (769px - 1024px) */
   @media (min-width: 769px) and (max-width: 1024px) {
     height: 55px;
-    width: 180px;
+    // width: 180px;
     font-size: 19px;
+    margin-bottom: 10px;
   }
 
   /* Desktops, large screens (1025px - 1200px) */
   @media (min-width: 1025px) and (max-width: 1200px) {
     height: 58px;
-    width: 182px;
+    // width: 182px;
     font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+    @media (min-width: 1201px) {
+    font-size: 20px;
+    margin-bottom: 20px;
   }
 `;
 

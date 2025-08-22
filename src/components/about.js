@@ -72,8 +72,8 @@ const AboutHeading = styled(motion.h1)`
 
   /* Extra large screens, TV (1201px and more) */
   @media (min-width: 1201px) {
-    font-size: 60px;
-    margin-bottom: 40px;
+    font-size: 62px;
+    margin-bottom: 10px;
   }
 `;
 
@@ -95,7 +95,7 @@ const AboutSubheading = styled(motion.p)`
 
   /* iPads, Tablets (481px - 768px) */
   @media (min-width: 481px) and (max-width: 768px) {
-    font-size: 22px;
+    font-size: 19px;
     margin-bottom: 10px;
     margin-top: 0px;
   }
@@ -114,7 +114,7 @@ const AboutSubheading = styled(motion.p)`
 
   /* Extra large screens, TV (1201px and more) */
   @media (min-width: 1201px) {
-    font-size: 25px;
+    font-size: 22px;
     margin-top: 0px;
     margin-bottom: 40px;
   }
@@ -131,7 +131,7 @@ const AboutCardsContainer = styled(motion.div)`
 `;
 
 const AboutCard = styled(motion.div)`
-  height: 25rem;
+  height: auto;
   // max-width: 20rem;
   border-radius: 15px;
   background-color: #0f0f0f;
@@ -140,7 +140,7 @@ const AboutCard = styled(motion.div)`
 
   /* Mobile devices (320px - 480px) */
   @media (min-width: 320px) and (max-width: 480px) {
-    height: 25rem;
+    height: 18rem;
     max-width: 75%;
     width: 15rem;
   }
@@ -165,6 +165,9 @@ const AboutCard = styled(motion.div)`
 
   /* Extra large screens, TV (1201px and more) */
   @media (min-width: 1201px) {
+    height: auto;
+    width: 100px;
+    flex: 1 1 200px;
   }
 `;
 
@@ -175,6 +178,8 @@ const AboutCardImage = styled.img`
   display: block;
   object-position: center;
 `;
+
+const isDesktop = window.innerWidth >= 768;
 
 function About() {
   const controls = useAnimation();
@@ -235,7 +240,10 @@ function About() {
             hidden: { opacity: 0 },
             visible: {
               opacity: 1,
-              transition: { staggerChildren: 0.1, delayChildren: 0.3 },
+              transition: {
+                staggerChildren: isDesktop ? 0.1 : 0,
+                delayChildren: 0.3,
+              },
             },
           }}
         >
@@ -246,8 +254,8 @@ function About() {
                 hidden: { opacity: 0, y: 20 },
                 visible: { opacity: 1, y: 0 },
               }}
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 400 }}
+              whileHover={{ scale: isDesktop ? 1.05 : 1.015 }}
+              transition={{ type: isDesktop ? "spring" : "", stiffness: 400 }}
             >
               <AboutCardImage src={`card${item}.webp`} alt="Diagnostic tools" />
             </AboutCard>
