@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from "react";
 import Sidebar from "../sidebar/Sidebar";
 import Display from "../display_area/Display";
@@ -22,3 +23,29 @@ function Maincontent() {
 }
 
 export default Maincontent;
+=======
+import React from "react";
+import Sidebar from "../sidebar/Sidebar";
+import Display from "../display_area/Display";
+
+function Maincontent() {
+  return (
+    <div
+      style={{
+        width: "100%",
+        height: "100vh",
+        display: "flex",
+        flexDirection: "row",
+        gap: "30px",
+        boxSizing: "border-box",
+        marginTop: "30px",
+      }}
+    >
+      <Sidebar />
+      <Display />
+    </div>
+  );
+}
+
+export default Maincontent;
+>>>>>>> df845a6eab5d821de668ab84963938654588bc4e
